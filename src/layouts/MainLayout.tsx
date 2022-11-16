@@ -6,7 +6,7 @@ import Sound from "../components/controls/Sound";
 
 export default function MainLayout() {
   return (
-    <main className="bg-gray-900 text-white h-screen flex items-center justify-center relative">
+    <main className="bg-gray-900 text-white h-screen flex items-center justify-center relative p-4">
       <Sound />
       <Outlet />
     </main>

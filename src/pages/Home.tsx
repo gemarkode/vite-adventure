@@ -9,7 +9,7 @@ export default function Home() {
     dispatch(setStage("1"));
   };
   return (
-    <div className="h-[300px] w-[600px] border flex flex-col items-center justify-center rounded-sm">
+    <div className="md:h-[300px] md:w-[600px] md:border flex flex-col items-center justify-center rounded-sm">
       <div className="flex items-center justify-center flex-col">
         <h1
           className="text-4xl font-bold bg-gradient-to-r text-transparent
