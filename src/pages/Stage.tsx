@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectStage, setStage, reset } from "../store/slices/stage";
