@@ -1,7 +1,7 @@
 import backsound from "../../assets/Secunda.webm";
 import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
-import rangeStyles from "./range.module.css";
+import moduleStyle from "./range.module.css";
 
 export default function Sound() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -34,9 +34,10 @@ export default function Sound() {
       <audio ref={audio} src={backsound} loop />
       <button onClick={toggle}>{isPlaying ? <Pause /> : <Play />}</button>
       <button
-        className="relative"
+        className={clsx("relative", moduleStyle.button)}
         onMouseEnter={() => setShowVolume(true)}
         onMouseLeave={() => setShowVolume(false)}
+        onClick={() => setShowVolume(!showVolume)}
       >
         {volume < 0.1 ? (
           <VolumeMute />
@@ -51,13 +52,12 @@ export default function Sound() {
           type="range"
           defaultValue={100}
           className={clsx(
-            rangeStyles.range,
+            moduleStyle.range,
             "w-32 h-1.5 range-sm bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700",
             "absolute -top-3 left-0 transform -translate-x-1/2",
             showVolume ? "" : "opacity-0 bg-gray-800"
           )}
-          onMouseEnter={(e) => e.stopPropagation()}
-          // onMouseLeave={(e) => e.stopPropagation()}
+          onBlur={() => setShowVolume(false)}
           onChange={handleVolume}
           min={0}
           max={100}
