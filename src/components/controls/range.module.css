@@ -2,6 +2,9 @@
   background: rgb(31 41 55);
   background-repeat: no-repeat;
   background-image: linear-gradient(rgb(55 65 81), rgb(55 65 81));
+  transition-property: opacity, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 
 .range::-webkit-slider-runnable-track {

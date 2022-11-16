@@ -54,8 +54,7 @@ export default function Sound() {
             rangeStyles.range,
             "w-32 h-1.5 range-sm bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700",
             "absolute -top-3 left-0 transform -translate-x-1/2",
-            showVolume ? "" : "opacity-0 bg-gray-800",
-            "transition-transform duration-300 ease-in-out"
+            showVolume ? "" : "opacity-0 bg-gray-800"
           )}
           onMouseEnter={(e) => e.stopPropagation()}
           // onMouseLeave={(e) => e.stopPropagation()}
