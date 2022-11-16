@@ -1,11 +1,20 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { selectStage, setStage, reset } from "../store/slices/stage";
+import { selectStage, setStage } from "../store/slices/stage";
 import Button from "../components/core/Button";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Start() {
   const dispatch = useAppDispatch();
   const stage = useAppSelector(selectStage);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!Boolean(stage.id)) {
+      navigate("/");
+    }
+  }, [stage]);
 
   return (
     <div className="h-full w-full flex items-center justify-center">

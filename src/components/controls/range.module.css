@@ -1,0 +1,35 @@
+.range {
+  background: rgb(31 41 55);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(55 65 81), rgb(55 65 81));
+}
+
+.range::-webkit-slider-runnable-track {
+  background-color: transparent;
+  border-radius: 5px;
+  height: 6px;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: grab;
+  margin-top: -3px;
+}
+
+.range::-moz-range-track {
+  background-color: rgb(55 65 81);
+  border-radius: 5px;
+  height: 6px;
+}
+
+.range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.range::-webkit-slider-runnable-track:focus {
+  outline: none;
+}

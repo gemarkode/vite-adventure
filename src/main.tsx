@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import "boxicons/css/boxicons.min.css";
 import AppRouter from "./router";
 import { Provider } from "react-redux";
 import store from "./store";
