@@ -122,9 +122,14 @@ export const stories: Story[] = [
   },
   {
     id: "10",
-    title: "Lost ending",
-    description: "You got lost in the forest",
-    ending: true,
+    title: "You ran into a mystical forest",
+    description: "Wow, this is so cool!",
+    choices: [
+      {
+        text: "Keep going",
+        target: "14",
+      },
+    ],
   },
   {
     id: "11",

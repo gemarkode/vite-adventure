@@ -1,27 +1,44 @@
 import backsound from "../../assets/Secunda.webm";
 import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import {
+  play,
+  pause,
+  selectPlaying,
+  selectVolume,
+  setVolume,
+} from "../../store/slices/music";
+
 import moduleStyle from "./range.module.css";
 
 export default function Sound() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const dispatch = useAppDispatch();
+  const isPlaying = useAppSelector(selectPlaying);
+  const volume = useAppSelector(selectVolume);
+
   const audio = useRef<HTMLAudioElement>(null);
   const slider = useRef<HTMLInputElement>(null);
-  const [volume, setVolume] = useState(100);
   const [showVolume, setShowVolume] = useState(false);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audio.current?.play();
+    } else {
+      audio.current?.pause();
+    }
+  }, [isPlaying]);
 
   const toggle = () => {
     if (audio?.current?.paused) {
-      audio.current.play();
-      setIsPlaying(true);
+      dispatch(play());
     } else {
-      audio?.current?.pause();
-      setIsPlaying(false);
+      dispatch(pause());
     }
   };
 
   const handleVolume = (e: any) => {
-    setVolume(e.target.value);
+    dispatch(setVolume(e.target.value));
 
     // @ts-ignore
     slider.current.style.backgroundSize = `${e.target.value}% 100%`;
