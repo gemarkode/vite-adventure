@@ -9,6 +9,7 @@ import {
   selectVolume,
   setVolume,
 } from "../../store/slices/music";
+import { Play, Pause, VolumeFull, VolumeLow, VolumeMute } from "../icons";
 
 import moduleStyle from "./range.module.css";
 
@@ -47,11 +48,16 @@ export default function Sound() {
   };
 
   return (
-    <div className="absolute bottom-4 flex items-center gap-2">
+    <div className="flex items-center gap-2">
       <audio ref={audio} src={backsound} loop />
-      <button onClick={toggle}>{isPlaying ? <Pause /> : <Play />}</button>
+      <button className="flex items-center focus:outline-none" onClick={toggle}>
+        {isPlaying ? <Pause /> : <Play />}
+      </button>
       <button
-        className={clsx("relative", moduleStyle.button)}
+        className={clsx(
+          "relative flex items-center focus:outline-none",
+          moduleStyle.button
+        )}
         onMouseEnter={() => setShowVolume(true)}
         onMouseLeave={() => setShowVolume(false)}
         onClick={() => setShowVolume(!showVolume)}
@@ -63,45 +69,36 @@ export default function Sound() {
         ) : (
           <VolumeFull />
         )}
-        <input
-          id="default-range"
-          ref={slider}
-          type="range"
-          defaultValue={100}
+
+        <div
           className={clsx(
-            moduleStyle.range,
-            "w-32 h-1.5 range-sm bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700",
-            "absolute -top-3 left-0 transform -translate-x-1/2",
-            showVolume ? "" : "opacity-0 bg-gray-800"
+            "absolute right-1/2 transform translate-x-1/2",
+            "transition-all duration-300 ease-in-out -rotate-90",
+            "bg-white/25 rounded-full",
+            "flex items-center justify-center",
+            "w-max py-1 px-1.5",
+            showVolume ? "bottom-16" : "bottom-14 opacity-0"
           )}
-          onBlur={() => setShowVolume(false)}
-          onChange={handleVolume}
-          min={0}
-          max={100}
-        />
+        >
+          <input
+            id="default-range"
+            ref={slider}
+            type="range"
+            defaultValue={100}
+            className={clsx(
+              "transition-transform duration-300 ease-in-out",
+              moduleStyle.range,
+              "w-20 focus:outline-none",
+              showVolume ? "opacity-100" : "opacity-0",
+              "bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+            )}
+            onBlur={() => setShowVolume(false)}
+            onChange={handleVolume}
+            min={0}
+            max={100}
+          />
+        </div>
       </button>
     </div>
   );
-}
-
-const styles = "text-2xl hover:text-gray-300 transition-all duration-300";
-
-function Play() {
-  return <i className={clsx(styles, "bx bx-play")}></i>;
-}
-
-function Pause() {
-  return <i className={clsx(styles, "bx bx-pause")}></i>;
-}
-
-function VolumeFull() {
-  return <i className={clsx(styles, "bx bx-volume-full")}></i>;
-}
-
-function VolumeMute() {
-  return <i className={clsx(styles, "bx bx-volume-mute")}></i>;
-}
-
-function VolumeLow() {
-  return <i className={clsx(styles, "bx bx-volume-low")}></i>;
 }

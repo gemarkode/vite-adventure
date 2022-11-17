@@ -4,17 +4,27 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectStage, setStage, reset } from "../store/slices/stage";
 import Button from "../components/core/Button";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getStory } from "../storyline";
 
 export default function Stage() {
   const dispatch = useAppDispatch();
   const stage = useAppSelector(selectStage);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     if (!Boolean(stage.id)) {
       navigate("/");
     }
-  }, [stage]);
+
+    if (stage.id !== id) {
+      const story = getStory(String(id));
+      if (!story) {
+        navigate("/on-progress");
+      }
+    }
+  }, [stage.id, id, navigate]);
 
   return (
     <div className="h-full w-full flex items-center justify-center">

@@ -8,7 +8,7 @@ export interface MusicState {
 
 const initialState: MusicState = {
   playing: false,
-  volume: 1,
+  volume: 100,
 };
 
 export const musicSlice = createSlice({
