@@ -53,7 +53,7 @@ export default function Sound() {
       <button className="flex items-center focus:outline-none" onClick={toggle}>
         {isPlaying ? <Pause /> : <Play />}
       </button>
-      <div
+      <button
         className={clsx(
           "relative flex items-center focus:outline-none",
           moduleStyle.button
@@ -100,7 +100,7 @@ export default function Sound() {
           min={0}
           max={100}
         />
-      </div>
+      </button>
     </div>
   );
 }
