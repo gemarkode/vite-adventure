@@ -1,5 +1,7 @@
 import { Quit } from "../icons";
 import { useNavigate } from "react-router-dom";
+import styles from "./notap.module.css";
+import clsx from "clsx";
 
 export default function Exit() {
   const navigate = useNavigate();
@@ -13,7 +15,10 @@ export default function Exit() {
 
   return (
     <button
-      className="flex items-center justify-center focus:outline-none"
+      className={clsx(
+        "flex items-center justify-center focus:outline-none",
+        styles.notap
+      )}
       onClick={handleQuit}
     >
       <Quit />

@@ -12,6 +12,7 @@ import {
 import { Play, Pause, VolumeFull, VolumeLow, VolumeMute } from "../icons";
 
 import moduleStyle from "./range.module.css";
+import notap from "./notap.module.css";
 
 export default function Sound() {
   const dispatch = useAppDispatch();
@@ -50,7 +51,10 @@ export default function Sound() {
   return (
     <div className="flex items-center gap-2">
       <audio ref={audio} src={backsound} loop />
-      <button className="flex items-center focus:outline-none" onClick={toggle}>
+      <button
+        className={clsx("flex items-center focus:outline-none", notap.notap)}
+        onClick={toggle}
+      >
         {isPlaying ? <Pause /> : <Play />}
       </button>
       <button
