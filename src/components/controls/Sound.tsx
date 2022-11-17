@@ -61,6 +61,7 @@ export default function Sound() {
         onMouseEnter={() => setShowVolume(true)}
         onMouseLeave={() => setShowVolume(false)}
         onClick={() => setShowVolume(!showVolume)}
+        onBlur={() => setShowVolume(false)}
       >
         {volume < 0.1 ? (
           <VolumeMute />
