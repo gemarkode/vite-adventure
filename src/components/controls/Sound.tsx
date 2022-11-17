@@ -53,7 +53,7 @@ export default function Sound() {
       <button className="flex items-center focus:outline-none" onClick={toggle}>
         {isPlaying ? <Pause /> : <Play />}
       </button>
-      <button
+      <div
         className={clsx(
           "relative flex items-center focus:outline-none",
           moduleStyle.button
@@ -73,32 +73,34 @@ export default function Sound() {
         <div
           className={clsx(
             "absolute right-1/2 transform translate-x-1/2",
-            "transition-all duration-300 ease-in-out -rotate-90",
+            "transition-all duration-300 ease-in-out",
             "bg-white/25 rounded-full",
             "flex items-center justify-center",
-            "w-max py-1 px-1.5",
-            showVolume ? "bottom-16" : "bottom-14 opacity-0"
+            "h-[5.6rem] w-3.5 bottom-6",
+            showVolume ? "opacity-100" : "opacity-0"
           )}
-        >
-          <input
-            id="default-range"
-            ref={slider}
-            type="range"
-            defaultValue={100}
-            className={clsx(
-              "transition-transform duration-300 ease-in-out",
-              moduleStyle.range,
-              "w-20 focus:outline-none",
-              showVolume ? "opacity-100" : "opacity-0",
-              "bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-            )}
-            onBlur={() => setShowVolume(false)}
-            onChange={handleVolume}
-            min={0}
-            max={100}
-          />
-        </div>
-      </button>
+        ></div>
+        <input
+          id="default-range"
+          ref={slider}
+          type="range"
+          defaultValue={100}
+          className={clsx(
+            "absolute right-1/2 transform translate-x-1/2",
+            moduleStyle.range,
+            "transition-opacity duration-300 ease-in-out",
+            "w-20 focus:outline-none -rotate-90 bottom-[4.2rem]",
+            showVolume ? "opacity-100" : "opacity-0",
+            "bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+          )}
+          onBlur={() => setShowVolume(false)}
+          onChange={handleVolume}
+          onMouseDown={(e) => e.stopPropagation()}
+          onSelect={(e) => e.stopPropagation()}
+          min={0}
+          max={100}
+        />
+      </div>
     </div>
   );
 }
