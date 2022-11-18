@@ -1,16 +1,6 @@
-export interface Choice {
-  text: string;
-  target: string;
-}
+import type { Story } from "./types";
 
-export interface Story {
-  id: string;
-  title?: string;
-  description?: string;
-  choices?: Choice[];
-  image?: string;
-  ending?: boolean;
-}
+const hasSword = import("./cases");
 
 export const stories: Story[] = [
   {
@@ -23,8 +13,7 @@ export const stories: Story[] = [
         target: "2",
       },
     ],
-    image:
-      "https://images.unsplash.com/photo-1497074367201-25b8d28279e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80",
+    imageQuery: "dark bed",
   },
   {
     id: "2",
@@ -39,14 +28,14 @@ export const stories: Story[] = [
         target: "4",
       },
     ],
-    image:
-      "https://images.unsplash.com/photo-1552819401-700b5e342b9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    imageQuery: "door",
   },
   {
     id: "3",
     title: "Bad ending",
     description: "The killer was in your house all along.",
     ending: true,
+    imageQuery: "killer",
   },
   {
     id: "4",
@@ -57,6 +46,7 @@ export const stories: Story[] = [
         target: "5",
       },
     ],
+    imageQuery: "",
   },
   {
     id: "5",
@@ -71,11 +61,12 @@ export const stories: Story[] = [
         target: "9",
       },
     ],
+    imageQuery: "bed",
   },
   {
     id: "6",
     title: "You see a masked man!",
-    description: "He's holding a knife!",
+    description: "He's holding a weapon!",
     choices: [
       {
         text: "Fight him",
@@ -86,12 +77,14 @@ export const stories: Story[] = [
         target: "8",
       },
     ],
+    imageQuery: "killer",
   },
   {
     id: "7",
     title: "Dumb ending",
     description: "What were you thinking?",
     ending: true,
+    imageQuery: "killed",
   },
   {
     id: "8",
@@ -107,6 +100,7 @@ export const stories: Story[] = [
         target: "11",
       },
     ],
+    imageQuery: "street",
   },
   {
     id: "9",
@@ -122,10 +116,11 @@ export const stories: Story[] = [
         target: "13",
       },
     ],
+    imageQuery: "roof",
   },
   {
     id: "10",
-    title: "You ran into a mystical forest",
+    title: "You ran into a mythical forest",
     description: "Wow, this is so cool!",
     choices: [
       {
@@ -133,24 +128,118 @@ export const stories: Story[] = [
         target: "14",
       },
     ],
+    imageQuery: "mythical forest",
   },
   {
     id: "11",
     title: "Car ending",
     description: "You got hit by a car",
     ending: true,
+    imageQuery: "car accident",
   },
   {
     id: "12",
     title: "Worrying ending",
     description: "Your parents never came home",
     ending: true,
+    imageQuery: "worrying",
   },
   {
     id: "13",
     title: "Good ending",
     description: "The police found you",
     ending: true,
+    imageQuery: "police",
+  },
+  {
+    id: "14",
+    title: "You found a treasure chest",
+    description: "Open it?",
+    choices: [
+      {
+        text: "Open it",
+        target: "15",
+      },
+      {
+        text: "Leave it",
+        target: "16",
+      },
+    ],
+    imageQuery: "treasure chest",
+  },
+  {
+    id: "15",
+    title: "You found a sword",
+    description: "You are now a knight",
+    choices: [
+      {
+        text: "Keep exploring",
+        target: "17",
+      },
+    ],
+    imageQuery: "sword",
+  },
+  {
+    id: "16",
+    title: "You missed the treasure",
+    description: "Where to now?",
+    choices: [
+      {
+        text: "Go back",
+        target: "14",
+      },
+      {
+        text: "Keep going",
+        target: "17",
+      },
+    ],
+    imageQuery: "forest",
+  },
+  {
+    id: "17",
+    title: "Look, a dragon!",
+    description: "What do you do?",
+    choices: [
+      {
+        text: "Fight it",
+        target: "18",
+      },
+      {
+        text: "Run away",
+        target: "20",
+      },
+    ],
+    imageQuery: "dragon",
+  },
+  {
+    id: "18",
+    title: "You killed the dragon",
+    description: "You are now a hero",
+    ending: true,
+    imageQuery: "hero",
+  },
+  {
+    id: "19",
+    title: "You died",
+    description: "Why didn't you get the sword?",
+    ending: true,
+    imageQuery: "dead",
+  },
+  {
+    id: "20",
+    title: "You ran away",
+    description: "You are now lost",
+    choices: [
+      {
+        text: "Keep running",
+        target: "21",
+      },
+      {
+        text: "Go back",
+        target: "17",
+      },
+    ],
+    imageQuery: "lost",
   },
 ];
 
