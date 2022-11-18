@@ -1,4 +1,4 @@
-import type { Story } from "../../storyline";
+import type { Story } from "../../storyline/types";
 import { stories } from "../../storyline";
 
 export const getStory = (id: string): Story | undefined => {
