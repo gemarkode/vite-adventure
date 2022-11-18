@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "../components/loading";
+import { AnimatePresence } from "framer-motion";
 
 const MainLayout = lazy(() => import("../layouts/MainLayout"));
 const Home = lazy(() => import("../pages/Home"));
@@ -12,14 +13,16 @@ export default function AppRouter() {
   return (
     <Router>
       <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/start" element={<Start />} />
-            <Route path="/stage/:id" element={<Stage />} />
-            <Route path="/on-progress" element={<OnProgress />} />
-          </Route>
-        </Routes>
+        <AnimatePresence>
+          <Routes>
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/start" element={<Start />} />
+              <Route path="/stage/:id" element={<Stage />} />
+              <Route path="/on-progress" element={<OnProgress />} />
+            </Route>
+          </Routes>
+        </AnimatePresence>
       </Suspense>
     </Router>
   );

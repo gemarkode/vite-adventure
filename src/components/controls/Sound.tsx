@@ -79,7 +79,7 @@ export default function Sound() {
           className={clsx(
             "absolute right-1/2 transform translate-x-1/2",
             "transition-all duration-300 ease-in-out",
-            "bg-white/25 rounded-full",
+            "bg-black/25 rounded-full",
             "flex items-center justify-center",
             "h-[5.6rem] w-3.5 bottom-6",
             showVolume ? "opacity-100" : "opacity-0"

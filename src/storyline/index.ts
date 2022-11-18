@@ -23,7 +23,8 @@ export const stories: Story[] = [
         target: "2",
       },
     ],
-    image: "https://picsum.photos/200/300",
+    image:
+      "https://images.unsplash.com/photo-1497074367201-25b8d28279e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80",
   },
   {
     id: "2",
@@ -38,6 +39,8 @@ export const stories: Story[] = [
         target: "4",
       },
     ],
+    image:
+      "https://images.unsplash.com/photo-1552819401-700b5e342b9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   },
   {
     id: "3",
