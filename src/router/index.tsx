@@ -17,7 +17,7 @@ export default function AppRouter() {
             <Route index element={<Home />} />
             <Route path="/start" element={<Start />} />
             <Route path="/stage/:id" element={<Stage />} />
-            <Route path="/on-progress" element={<OnProgress />} />
+            <Route path="*" element={<OnProgress />} />\
           </Route>
         </Routes>
       </Suspense>
