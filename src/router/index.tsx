@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "../components/loading";
+import MainLayout from "../layouts/MainLayout";
 
-const MainLayout = lazy(() => import("../layouts/MainLayout"));
 const Home = lazy(() => import("../pages/Home"));
 const Start = lazy(() => import("../pages/Start"));
 const Stage = lazy(() => import("../pages/Stage"));
-const DetailStage = lazy(() => import("../pages/stages/DetailStage"));
+const OnProgress = lazy(() => import("../pages/OnProgress"));
 
 export default function AppRouter() {
   return (
@@ -16,9 +16,8 @@ export default function AppRouter() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="/start" element={<Start />} />
-            <Route path="/stage" element={<Stage />}>
-              <Route path=":id" element={<DetailStage />} />
-            </Route>
+            <Route path="/stage/:id" element={<Stage />} />
+            <Route path="*" element={<OnProgress />} />\
           </Route>
         </Routes>
       </Suspense>

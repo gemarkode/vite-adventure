@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
 import { getStory } from "../actions/getStory";
-import type { Story } from "../../storyline";
+import type { Story } from "../../storyline/types";
 
 const initialState: Story = {
   id: "",
   title: "",
   description: "",
   choices: [],
-  image: "",
+  imageQuery: "",
 };
 
 export const stageSlice = createSlice({
@@ -23,7 +23,7 @@ export const stageSlice = createSlice({
         state.title = story.title;
         state.description = story.description;
         state.choices = story.choices;
-        state.image = story.image || "";
+        state.imageQuery = story.imageQuery || "";
         state.ending = story.ending || false;
       }
     },
@@ -32,7 +32,7 @@ export const stageSlice = createSlice({
       state.title = "";
       state.description = "";
       state.choices = [];
-      state.image = "";
+      state.imageQuery = "";
     },
   },
 });
