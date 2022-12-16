@@ -1,66 +1,50 @@
 // render the AppRouter component inside the MainLayout component
 // src\layouts\MainLayout.tsx
-import Controls from "../components/controls";
+import Controls from "@/components/controls";
 import { Outlet } from "react-router-dom";
-import { useAppSelector } from "../hooks";
-import { selectStage } from "../store/slices/stage";
-import { useState, useEffect } from "react";
-import { Transition } from "@headlessui/react";
-import { useLocation } from "react-router-dom";
+import Inventory from "@/components/inventory";
+import { motion } from "framer-motion";
+import InventoryControls from "@/components/inventory/Controls";
+import { useAppSelector } from "@/hooks";
+import { selectExpand } from "@/store/slices/inventory";
+import clsx from "clsx";
 
 export default function MainLayout() {
-  const { pathname } = useLocation();
-  const { imageQuery } = useAppSelector(selectStage);
-  const [imageLoading, setImageLoading] = useState(true);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [loadedImage, setLoadedImage] = useState("");
-
-  const url = import.meta.env.VITE_IMAGE_URL;
-
-  useEffect(() => {
-    setImageLoading(true);
-    setImageLoaded(false);
-    if (imageQuery) {
-      fetch(`${url}${imageQuery}`)
-        .then((res) => res.json())
-        .then((data) => {
-          const images = data.results;
-          const randomImage = images[Math.floor(Math.random() * images.length)];
-          setImageLoading(false);
-          setImageLoaded(true);
-          setLoadedImage(randomImage.urls.regular);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [imageQuery]);
+  const expand = useAppSelector(selectExpand);
 
   return (
-    <main className="bg-gray-900 text-white h-screen flex items-center justify-center relative p-4">
-      {pathname !== "/" && (
-        <Transition
-          show={imageLoaded}
-          enter="transition-opacity duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity duration-300"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <figure className="absolute z-0 top-0 left-0 w-full h-full">
-            <img
-              src={loadedImage}
-              alt="background"
-              className="object-cover w-full h-full"
-            />
-          </figure>
-        </Transition>
-      )}
-      <main className="relative z-[1] bg-black/30 py-10 px-16 rounded-md backdrop-blur-sm">
+    <div className="bg-gray-900 text-white h-screen flex items-center justify-center relative p-4">
+      <main
+        className={clsx(
+          "relative z-[1] bg-black/10 h-96 w-[600px]",
+          "hidden backdrop-blur-sm sm:flex items-center justify-center",
+          expand ? " rounded-l-md" : "rounded-md"
+        )}
+      >
         <Outlet />
       </main>
+      <motion.div
+        initial={{
+          width: 0,
+        }}
+        animate={{
+          width: expand ? 300 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+        className={clsx(
+          "relative h-96 z-[0]",
+          "bg bg-gradient-to-r from-black/10 to-black/20",
+          "rounded-r-md backdrop-blur-sm flex items-center justify-center"
+        )}
+      >
+        <Inventory />
+        <InventoryControls />
+      </motion.div>
+
+      <div className="sm:hidden">
+        <p className="text-center">Mobile version coming soon!</p>
+      </div>
       <Controls />
-    </main>
+    </div>
   );
 }

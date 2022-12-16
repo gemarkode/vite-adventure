@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import player from "./slices/player";
 import stage from "./slices/stage";
 import music from "./slices/music";
+import inventory from "./slices/inventory";
 
 const store = configureStore({
   reducer: {
     player,
     stage,
     music,
+    inventory,
   },
 });
 

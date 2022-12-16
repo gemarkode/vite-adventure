@@ -1,7 +1,5 @@
 import type { Story } from "./types";
 
-const hasSword = import("./cases");
-
 export const stories: Story[] = [
   {
     id: "1",
