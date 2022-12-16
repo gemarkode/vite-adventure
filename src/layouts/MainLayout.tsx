@@ -32,7 +32,7 @@ export default function MainLayout() {
         }}
         transition={{ duration: 0.3 }}
         className={clsx(
-          "relative h-96 z-[0]",
+          "relative h-96 z-[0] hidden sm:block",
           "bg bg-gradient-to-r from-black/10 to-black/20",
           "rounded-r-md backdrop-blur-sm flex items-center justify-center"
         )}
